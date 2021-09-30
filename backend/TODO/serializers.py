@@ -1,3 +1,4 @@
+from rest_framework.relations import HyperlinkedRelatedField
 from rest_framework.serializers import ModelSerializer
 # from .models import CustomUser
 from .models import Project, TODO
@@ -11,7 +12,7 @@ class ProjectSerializer(ModelSerializer):
 
 
 class TODOSerializer(ModelSerializer):
-    project = ProjectSerializer()
+    project = HyperlinkedRelatedField(read_only=True, view_name='project-detail')
 
     class Meta:
         model = TODO
